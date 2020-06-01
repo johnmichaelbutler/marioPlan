@@ -4,7 +4,7 @@ import 'firebase/firestore';
 import 'firebase/auth'
 
 // Your web app's Firebase configuration
-var firebaseConfig = {
+export const fbConfig = {
   apiKey: "AIzaSyDe8ZTjiZsaggv14C0jqGifVE4m87GUM5Q",
   authDomain: "marioplan-8b34e.firebaseapp.com",
   databaseURL: "https://marioplan-8b34e.firebaseio.com",
@@ -15,7 +15,7 @@ var firebaseConfig = {
   measurementId: "G-P63R62M5BB"
 };
 // Initialize Firebase
-firebase.initializeApp(firebaseConfig);
-firebase.firestore().settings({ timestampsInSnapshots: true });
+firebase.initializeApp(fbConfig);
+firebase.firestore();
 
 export default firebase;
