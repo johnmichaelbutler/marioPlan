@@ -34,6 +34,7 @@ const mapStateToProps = (state) => {
 
 export default compose(
   connect(mapStateToProps),
+  // Gives us access to our firestore DB
   firestoreConnect([
     { collection: 'projects' }
   ])
