@@ -3,12 +3,14 @@ export const createProject = (project) => {
   return (dispatch, getState, { getFirebase, getFirestore }) => {
     // Make async call to database
     const firestore = getFirestore();
+    const profile = getState().firebase.profile;
+    const authorId = getState().firebase.auth.uid;
     // Thunk returns a promise
     firestore.collection('projects').add({
       ...project,
-      authorFirstName: 'John',
-      authorLastName: 'Butler',
-      authorId: 123,
+      authorFirstName: profile.firstName,
+      authorLastName: profile.lastName,
+      authorId: authorId,
       createdAt: new Date()
     }).then(() => {
       // Then dispatch the action
