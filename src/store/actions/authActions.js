@@ -8,9 +8,18 @@ export const signIn = (credentials) => {
       credentials.email,
       credentials.password
     ).then(() => {
-      dispatch({ type: 'LOGIN_SUCESS'})
+      dispatch({ type: 'LOGIN_SUCCESS'})
     }).catch((err) => {
       dispatch({ type: 'LOGIN_ERROR', err})
     })
   }
-}
+};
+
+export const signOut = () => {
+  return (dispatch, getState, {getFirebase}) => {
+    firebase.auth().signOut()
+      .then(() => {
+        dispatch({ type: 'SIGNOUT_SUCCESS'})
+      });
+  }
+};

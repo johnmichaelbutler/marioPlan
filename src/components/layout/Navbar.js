@@ -4,7 +4,6 @@ import SignedInLinks from './SignedInLinks';
 import SignedOutLinks from './SignedOutLinks';
 import { connect } from 'react-redux';
 
-
 const Navbar = () => {
   return (
     <nav className='nav-wrapper grey darken-3'>
@@ -22,7 +21,8 @@ const mapStateToProps = (state) => {
   return {
 
   }
-}
+};
+
 
 export default connect(
   mapStateToProps
