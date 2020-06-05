@@ -26,24 +26,22 @@ export const signOut = () => {
 };
 
 export const signUp = (newUser) => {
-  const { firstName, lastName, email, password} = newUser;
-
   return (dispatch, getState, {getFirebase, getFirestore}) => {
     const firestore = getFirestore();
 
-    firebase.auth().createUserWithEmailAndPassword(email, password)
-      .then((resp) => {
-        return firestore.collection('users').doc(resp.user.uid).set({
-          firstName,
-          lastName,
-          initials: firstName[0] + lastName[0]
-        })
-      })
-      .then(() => {
-        dispatch({ type: 'SIGNUP_SUCCESS'});
-      })
-      .catch(err => {
-        dispatch({ type: 'SIGNUP_ERROR', err})
-      })
-  };
-};
+    firebase.auth().createUserWithEmailAndPassword(
+      newUser.email,
+      newUser.password
+    ).then(resp => {
+      return firestore.collection('users').doc(resp.user.uid).set({
+        firstName: newUser.firstName,
+        lastName: newUser.lastName,
+        initials: newUser.firstName[0] + newUser.lastName[0]
+      });
+    }).then(() => {
+      dispatch({ type: 'SIGNUP_SUCCESS' });
+    }).catch((err) => {
+      dispatch({ type: 'SIGNUP_ERROR', err});
+    });
+  }
+}
