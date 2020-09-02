@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 const initState = {
   authError: null
 }
